@@ -37,7 +37,7 @@ CREATE TABLE reservations (
   start_date DATE NOT NULL,
   end_date DATE NOT NULL,
   property_id INTEGER REFERENCES property(id) ON DELETE CASCADE,
-  guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE property_reviews (
