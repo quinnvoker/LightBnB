@@ -18,17 +18,13 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function(email) {
-  let user;
-  for (const userId in users) {
-    user = users[userId];
-    if (user.email.toLowerCase() === email.toLowerCase()) {
-      break;
-    } else {
-      user = null;
-    }
-  }
-  return Promise.resolve(user);
-}
+  return pool.query(`
+    SELECT id, name, email, password
+      FROM users
+      WHERE email = $1;
+    `, [email])
+    .then(res => res.rows[0] ? res.rows[0] : null);
+};
 exports.getUserWithEmail = getUserWithEmail;
 
 /**
@@ -37,8 +33,13 @@ exports.getUserWithEmail = getUserWithEmail;
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithId = function(id) {
-  return Promise.resolve(users[id]);
-}
+  return pool.query(`
+    SELECT id, name, email, password
+      FROM users
+      WHERE id = $1;
+    `, [id])
+    .then(res => res.rows[0] ? res.rows[0] : null);
+};
 exports.getUserWithId = getUserWithId;
 
 
@@ -52,7 +53,7 @@ const addUser =  function(user) {
   user.id = userId;
   users[userId] = user;
   return Promise.resolve(user);
-}
+};
 exports.addUser = addUser;
 
 /// Reservations
