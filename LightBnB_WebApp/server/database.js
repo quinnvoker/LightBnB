@@ -91,7 +91,7 @@ const getAllProperties = function(options, limit = 10) {
     SELECT properties.*, AVG(rev.rating) as average_rating
       FROM 
         properties
-        JOIN property_reviews rev ON properties.id = rev.property_id `;
+        LEFT JOIN property_reviews rev ON properties.id = rev.property_id `;
   let qWhere = '';
   const qGroup = `
     GROUP BY
