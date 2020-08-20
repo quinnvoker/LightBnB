@@ -18,8 +18,11 @@ $(() => {
             `<p>${moment(property.start_date).format('ll')} - ${moment(property.end_date).format('ll')}</p>` 
             : `<button class="property-listing__reserve">Make Reservation</button>`}
           <form class="property-listing__reserve-form">
-            <input type="text" style="width:75px;">
-            <input type="text">
+            <label for="start_date">Start:</label>
+            <input class="property-listing__reserve-date" name="start_date" type="date">
+            <label for="end_date">End:</label>
+            <input class="property-listing__reserve-date" name="end_date" type="date">
+            <input type="submit">
           </form>
           <footer class="property-listing__footer">
             <div class="property-listing__rating">${Math.round(property.average_rating * 100) / 100}/5 stars</div>
