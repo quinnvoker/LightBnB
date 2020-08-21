@@ -17,13 +17,14 @@ $(() => {
           ${isReservation ? 
             `<p>${moment(property.start_date).format('ll')} - ${moment(property.end_date).format('ll')}</p>` 
             : `<button class="property-listing__reserve">Make Reservation</button>`}
-          <form class="property-listing__reserve-form">
+            <form class="property-listing__reserve-form">
             <label for="start_date">Start:</label>
             <input class="property-listing__reserve-date" name="start_date" type="date">
             <label for="end_date">End:</label>
             <input class="property-listing__reserve-date" name="end_date" type="date">
             <input type="submit">
-          </form>
+            </form>
+            <strong class="property-listing__reserve-success">RESERVATION SUCCESSFUL</strong>
           <footer class="property-listing__footer">
             <div class="property-listing__rating">${Math.round(property.average_rating * 100) / 100}/5 stars</div>
             <div class="property-listing__price">$${property.cost_per_night/100.0}/night</div>

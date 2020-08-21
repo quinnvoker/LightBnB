@@ -13,7 +13,9 @@ $(() => {
     const $newListing = $(listing);
     const $resButton = $newListing.find('.property-listing__reserve');
     const $resForm = $newListing.find('.property-listing__reserve-form');
+    const $resSuccess = $newListing.find('.property-listing__reserve-success');
     $resForm.hide();
+    $resSuccess.hide();
     $resButton.click(() => {
       $resForm.show();
       $resButton.hide();
@@ -30,6 +32,7 @@ $(() => {
       submitReservation(formData.concat(`&property_id=${id}`))
         .then(() => {
           $resForm.hide();
+          $resSuccess.show();
         });
     });
     $propertyListings.append($newListing);

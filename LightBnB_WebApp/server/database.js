@@ -138,7 +138,6 @@ const getAllProperties = function(options, limit = 10) {
 exports.getAllProperties = getAllProperties;
 
 const addReservation = function(reservation) {
-  console.log('ADDING RESERVATION...');
   const queryParams = [
     reservation.start_date,
     reservation.end_date,
@@ -152,7 +151,6 @@ const addReservation = function(reservation) {
       RETURNING *
     `, queryParams)
     .then(res => {
-      console.log(res.rows);
       return res.rows[0];
     });
 };
