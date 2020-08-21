@@ -22,9 +22,15 @@ $(() => {
       event.preventDefault();
       const dateInputs = $resForm.find('.property-listing__reserve-date');
       for (const dateInput of dateInputs) {
-        console.log(!$(dateInput).val());
+        if (!$(dateInput).val()) {
+          return;
+        }
       }
-      console.log($resForm.serialize());
+      const formData = $resForm.serialize();
+      submitReservation(formData.concat(`&property_id=${id}`))
+        .then(() => {
+          $resForm.hide();
+        });
     });
     $propertyListings.append($newListing);
   };
